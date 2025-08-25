@@ -1,0 +1,45 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  max-height: 110px;
+  justify-content: space-between;
+  padding: 40px 17% 20px 17%;
+  color: #fff;
+  background: #01091b;
+
+  img {
+    display: block;
+    margin: 0 auto;
+    padding: 0;
+    max-width: 100%;
+  }
+
+  ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+  }
+
+  a {
+    margin-left: 20px;
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: #4dff00;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .navbar {
+    padding: 20px;
+  }
+
+  a {
+    font-size: 12px;
+    font-weight: 500;
+  }
+}

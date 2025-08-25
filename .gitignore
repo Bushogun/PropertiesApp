@@ -1,0 +1,58 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/propertiesapplicationfront/node_modules
+/propertiesapplicationfront/.pnp
+.pnp.js
+.yarn/install-state.gz
+
+# testing
+/propertiesapplicationfront/coverage
+
+# next.js
+/propertiesapplicationfront/.next/
+/out/
+
+# production
+/propertiesapplicationfront/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+# === Visual Studio ===
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# === Build ===
+bin/
+obj/
+
+# === Logs ===
+*.log
+
+# === OS ===
+Thumbs.db
+.DS_Store
+
+# === Node (React frontend) ===
+node_modules/
+dist/
+build/
+
+# === Environment ===
+.env

@@ -1,0 +1,39 @@
+.login-box .user-box .user-box2 .user-box-antd {
+   width: 100%;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: none;
+    outline: none;
+    background: transparent;
+}
+
+.login-box .user-box .user-box2 label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #03e9f4;
+    pointer-events: none;
+    transition: .5s;
+}
+
+
+body > div > div > form > div:nth-child(4) > div > div > span > span.ant-select-selection-placeholder
+{
+    color: #757575 !important;
+}
+
+input::placeholder {
+  color: #ccc; 
+}
+
+.user-box-antd .ant-picker-input input::placeholder {
+  color: #ccc; 
+}
+
+:where(.css-dev-only-do-not-override-1v28nim).ant-picker .ant-picker-input{
+    display: flex !important;
+}

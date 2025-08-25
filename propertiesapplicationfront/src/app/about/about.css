@@ -1,0 +1,21 @@
+.about-container {
+  padding-top: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 50px;
+  img{
+    object-fit: contain;
+    width: 100%;
+  }
+
+  @media screen and (max-width: 1030px) {
+    display: block;
+
+    img {
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+    }
+  }
+}
