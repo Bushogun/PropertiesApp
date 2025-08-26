@@ -1,83 +1,29 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Application.Features.Property.Owners.Dtos.OwnersDto;
+using Application.Features.Property.Owners.Queries;
+using Core.Dtos.ResponsesDto;
+using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-    public class PropertyTraceController : Controller
+    [ApiController]
+    [Route("api/property-trace")]
+    public class PropertyTraceController : ControllerBase
     {
-        // GET: PropertyTraceController
-        public ActionResult Index()
+        private readonly IMediator _mediator;
+
+        public PropertyTraceController(IMediator mediator)
         {
-            return View();
+            _mediator = mediator;
         }
 
-        // GET: PropertyTraceController/Details/5
-        public ActionResult Details(int id)
+        // GET api/property-trace
+        [HttpGet]
+        [Consumes("application/json")]
+        public async Task<Result<List<PropertyTraceResponseDto>>> GetPropertyTrace()
         {
-            return View();
-        }
-
-        // GET: PropertyTraceController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: PropertyTraceController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: PropertyTraceController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: PropertyTraceController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: PropertyTraceController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: PropertyTraceController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            return await _mediator.Send(new GetPropertyTraceQuery());
         }
     }
 }

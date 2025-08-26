@@ -1,6 +1,4 @@
-﻿using Application.Features.Property.Owners.Commands;
-using Application.Features.Property.Owners.Dtos.OwnersDto;
-using Application.Features.Property.Properties.Dtos.PropertiesDto;
+﻿using Application.Features.Property.Properties.Dtos.PropertiesDto;
 using Core.Dtos.ResponsesDto;
 using Infrastructure.Persistence;
 using MediatR;
@@ -27,9 +25,13 @@ namespace Application.Features.Property.Properties.Commands
                 return Result<PropertiesRequestParamsDto>.Success(null, 0);
             }
 
+            var imageFilter = Builders<Domain.Entities.PropertyImageEntity>.Filter.Eq(pi => pi.IdProperty, request.IdProperty);
+            await _context.PropertyImages.DeleteManyAsync(imageFilter, cancellationToken);
+
             var dto = new PropertiesRequestParamsDto { IdProperty = property.IdProperty };
 
             return Result<PropertiesRequestParamsDto>.Success(dto);
+
         }
     }
 }

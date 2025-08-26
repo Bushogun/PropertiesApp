@@ -1,83 +1,45 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Application.Features.Property.PropertyImage.Commands;
+using Application.Features.Property.PropertyImage.Queries;
+using Application.Features.Property.PropertyImage.Dtos;
+using Core.Dtos.ResponsesDto;
 using Microsoft.AspNetCore.Mvc;
+using MediatR;
 
 namespace API.Controllers
 {
-    public class PropertyImageController : Controller
+    [ApiController]
+    [Route("api/property-image")]
+    public class PropertyImageController : ControllerBase
     {
-        // GET: PropertyImageController
-        public ActionResult Index()
+        private readonly IMediator _mediator;
+
+        public PropertyImageController(IMediator mediator)
         {
-            return View();
+            _mediator = mediator;
         }
 
-        // GET: PropertyImageController/Details/5
-        public ActionResult Details(int id)
+        // GET api/property-image/{id}
+        [HttpGet("{id}")]
+        [Consumes("application/json")]
+        public async Task<Result<List<PropertyImageResponseDto>>> GetAllPropertyImagesByIdProperty(string id)
         {
-            return View();
+            return await _mediator.Send(new GetAllPropertyImageQuery { IdProperty = id });
         }
 
-        // GET: PropertyImageController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: PropertyImageController/Create
+        // POST api/property-image/
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        [Consumes("application/json")]
+        public async Task<Result<CreatePropertyImageResponseDto>> PostPropertyImages([FromBody] CreatePropertyImageCommand request)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            return await _mediator.Send(request);
         }
 
-        // GET: PropertyImageController/Edit/5
-        public ActionResult Edit(int id)
+        // DELETE api/property-image/{id}
+        [HttpDelete("{id}")]
+        [Consumes("application/json")]
+        public async Task<Result<PropertyImageRequestParamsDto>> DeletePropertyImages(string id)
         {
-            return View();
-        }
-
-        // POST: PropertyImageController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: PropertyImageController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: PropertyImageController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            return await _mediator.Send(new DeletePropertyImagesCommand { IdProperty = id });
         }
     }
 }

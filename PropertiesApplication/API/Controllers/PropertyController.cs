@@ -20,7 +20,6 @@ namespace API.Controllers
 
         // GET api/property
         [HttpGet]
-        [Route("api/Properties")]
         [Consumes("application/json")]
         public async Task<Result<List<PropertiesResponseDto>>> GetAllProperties()
         {
@@ -46,7 +45,7 @@ namespace API.Controllers
         // DELETE api/property/{id}
         [HttpDelete("{id}")]
         [Consumes("application/json")]
-        public async Task<Result<PropertiesRequestParamsDto>> DeleteProperty(string id)
+        public async Task<Result<PropertiesRequestParamsDto>> DeletePropertyAndImages(string id)
         {
             return await _mediator.Send(new DeletePropertiesCommand { IdProperty = id });
         }

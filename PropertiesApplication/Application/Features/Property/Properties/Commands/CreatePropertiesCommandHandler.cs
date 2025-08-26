@@ -1,7 +1,4 @@
-﻿using Application.Features.Property.Owners.Commands;
-using Application.Features.Property.Owners.Dtos.OwnersDto;
-using Application.Features.Property.Owners.Mappers;
-using Application.Features.Property.Properties.Dtos.PropertiesDto;
+﻿using Application.Features.Property.Properties.Dtos.PropertiesDto;
 using Application.Features.Property.Properties.Mappers;
 using Core.Dtos.ResponsesDto;
 using Infrastructure.Persistence;

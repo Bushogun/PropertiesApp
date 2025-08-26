@@ -14,7 +14,7 @@ namespace Domain.Entities
         public string IdProperty { get; set; }
 
         [BsonElement("FileData")]
-        public byte[] FileData { get; set; }
+        public byte FileData { get; set; }
         public bool Enabled { get; set; }
     }
 }
