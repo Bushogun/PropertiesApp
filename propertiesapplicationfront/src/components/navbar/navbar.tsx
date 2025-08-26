@@ -20,7 +20,7 @@ export const Navbar = () => {
             <ul>
                 <li>
                     <Link href="/registry-owner">
-                        Registry
+                        Registry Owner
                     </Link>
                 </li>
                 <li>

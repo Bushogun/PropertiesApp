@@ -20,18 +20,19 @@ namespace API.Controllers
 
         // GET api/property
         [HttpGet]
+        [Route("api/Properties")]
         [Consumes("application/json")]
-        public async Task<Result<List<PropertiesResponseDto>>> GetProperties()
+        public async Task<Result<List<PropertiesResponseDto>>> GetAllProperties()
         {
-            return await _mediator.Send(new GetPropertiesQuery());
+            return await _mediator.Send(new GetAllPropertiesQuery());
         }
 
         // GET api/property/{id}
         [HttpGet("{id}")]
         [Consumes("application/json")]
-        public async Task<Result<PropertiesResponseDto>> GetProperty(string id)
+        public async Task<Result<PropertiesResponseDto>> GetProperties(string id)
         {
-            return await _mediator.Send(new GetPropertyQuery { IdProperty = id });
+            return await _mediator.Send(new GetPropertiesQuery { IdProperty = id });
         }
 
         // POST api/property
@@ -45,9 +46,9 @@ namespace API.Controllers
         // DELETE api/property/{id}
         [HttpDelete("{id}")]
         [Consumes("application/json")]
-        public async Task<Result<PropertiesResquestParamsDto>> DeleteProperty(string id)
+        public async Task<Result<PropertiesRequestParamsDto>> DeleteProperty(string id)
         {
-            return await _mediator.Send(new DeletePropertyCommand { IdProperty = id });
+            return await _mediator.Send(new DeletePropertiesCommand { IdProperty = id });
         }
     }
 }

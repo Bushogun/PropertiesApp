@@ -11,9 +11,10 @@ namespace Domain.Entities
         public string IdPropertyImage { get; set; }
 
         [BsonRepresentation(BsonType.ObjectId)]
-        public string IdProperty { get; set; } 
+        public string IdProperty { get; set; }
 
-        public string File { get; set; } 
+        [BsonElement("FileData")]
+        public byte[] FileData { get; set; }
         public bool Enabled { get; set; }
     }
 }

@@ -3,7 +3,6 @@ using Application.Features.Property.Owners.Mappers;
 using Core.Dtos.ResponsesDto;
 using Infrastructure.Persistence;
 using MediatR;
-using MongoDB.Driver;
 
 namespace Application.Features.Property.Owners.Commands
 {

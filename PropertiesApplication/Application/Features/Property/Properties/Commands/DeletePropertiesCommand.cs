@@ -4,5 +4,5 @@ using MediatR;
 
 namespace Application.Features.Property.Properties.Commands
 {
-    public class CreatePropertiesCommand : PropertyPostParamsDto, IRequest<Result<CreatePropertiesResponseDto>>;
+    public class DeletePropertiesCommand: PropertiesRequestParamsDto, IRequest<Result<PropertiesRequestParamsDto>> ;
 }

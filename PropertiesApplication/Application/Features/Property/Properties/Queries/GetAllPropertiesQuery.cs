@@ -4,5 +4,5 @@ using MediatR;
 
 namespace Application.Features.Property.Properties.Queries
 {
-    public class GetPropertiesQuery: PropertiesRequestParamsDto, IRequest<Result<PropertiesResponseDto>>;
+    public class GetAllPropertiesQuery : IRequest<Result<List<PropertiesResponseDto>>>;
 }
