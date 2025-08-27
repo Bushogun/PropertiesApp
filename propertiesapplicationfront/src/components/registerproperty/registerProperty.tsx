@@ -1,17 +1,17 @@
 'use client';
+import { CreatePropertyImageAPI } from '@/app/api/propertyImageService';
+import { PropertyImagePostModel } from '@/models/PropertyImagesModel';
 import { setOwners } from '@/redux/features/properties-slice';
+import { generateInternalCode } from '@/utils/string-utils';
+import { CreatePropertyAPI } from '@/app/api/propertyService';
+import { PropertyPostModel } from '@/models/PropertyModel';
 import { GetAllOwnersAPI } from '@/app/api/ownerService';
 import React, { useEffect, useState } from 'react';
 import { useAppDispatch } from "@/redux/hooks";
 import { Form, Select } from "antd";
 import dynamic from 'next/dynamic';
-import './registerProperty.css';
-import { generateInternalCode } from '@/utils/string-utils';
-import { CreatePropertyAPI } from '@/app/api/propertyService';
-import { PropertyPostModel } from '@/models/PropertyModel';
 import { toast } from 'react-toastify';
-import { CreatePropertyImageAPI } from '@/app/api/propertyImageService';
-import { PropertyImagePostModel } from '@/models/PropertyImagesModel';
+import './registerProperty.css';
 
 export default function RegisterProperty() {
     const dispatch = useAppDispatch();
@@ -81,63 +81,59 @@ export default function RegisterProperty() {
         }
     };
 
-const onSubmit = async () => {
-    if (isSubmitting) return;
-    if (!validateForm()) {
-        console.log('[onSubmit] validation failed');
-        return;
-    }
-
-    setIsSubmitting(true);
-    try {
-        const thumbnailBase64 = form.getFieldValue('thumbnailUrl');
-
-        const payload: PropertyPostModel = {
-            idOwner: selectedOwner as string,
-            name: fullName,
-            codeInternal: generateInternalCode(),
-            address,
-            price: Number(price),
-            year: Number(year),
-        };
-
-        const idPropertyCreated = await createProperty(payload);
-        console.log('[onSubmit] propiedad creada. idProperty =', idPropertyCreated);
-
-        if (thumbnailBase64) {
-            // 🔹 quitar encabezado tipo "data:image/png;base64," y dejar solo el base64
-            const base64String = thumbnailBase64.split(',')[1];
-
-            const payloadImage: PropertyImagePostModel = {
-                idProperty: idPropertyCreated,
-                fileData: base64String, // ✅ ya es un string base64
-                enabled: true,
-            };
-
-            await uploadPropertyImage(payloadImage);
-            console.log('[onSubmit] imagen subida correctamente');
-            toast.success('Property and image uploaded successfully!');
-        } else {
-            console.log('[onSubmit] no se encontró thumbnail en el formulario. Se omite subida de imagen.');
-            toast.success('Property created successfully (without image).');
+    const onSubmit = async () => {
+        if (isSubmitting) return;
+        if (!validateForm()) {
+            console.log('[onSubmit] validation failed');
+            return;
         }
 
-        // 🔹 limpiar formulario
-        form.resetFields();
-        setSelectedOwner(null);
-        setFullName('');
-        setAddress('');
-        setPrice('');
-        setYear('');
-    } catch (err) {
-        console.error('[onSubmit] error general =>', err);
-        toast.error('There was an error creating the property. Check console for details.');
-    } finally {
-        setIsSubmitting(false);
-    }
-};
+        setIsSubmitting(true);
+        try {
+            const thumbnailBase64 = form.getFieldValue('thumbnailUrl');
 
+            const payload: PropertyPostModel = {
+                idOwner: selectedOwner as string,
+                name: fullName,
+                codeInternal: generateInternalCode(),
+                address,
+                price: Number(price),
+                year: Number(year),
+            };
 
+            const idPropertyCreated = await createProperty(payload);
+            console.log('[onSubmit] propiedad creada. idProperty =', idPropertyCreated);
+
+            if (thumbnailBase64) {
+                const base64String = thumbnailBase64.split(',')[1];
+
+                const payloadImage: PropertyImagePostModel = {
+                    idProperty: idPropertyCreated,
+                    fileData: base64String,
+                    enabled: true,
+                };
+
+                await uploadPropertyImage(payloadImage);
+                console.log('[onSubmit] imagen subida correctamente');
+                toast.success('Property and image uploaded successfully!');
+            } else {
+                console.log('[onSubmit] no se encontró thumbnail en el formulario. Se omite subida de imagen.');
+                toast.success('Property created successfully (without image).');
+            }
+
+            form.resetFields();
+            setSelectedOwner(null);
+            setFullName('');
+            setAddress('');
+            setPrice('');
+            setYear('');
+        } catch (err) {
+            console.error('[onSubmit] error general =>', err);
+            toast.error('There was an error creating the property. Check console for details.');
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
 
     useEffect(() => {
         const fetchOwners = async () => {
