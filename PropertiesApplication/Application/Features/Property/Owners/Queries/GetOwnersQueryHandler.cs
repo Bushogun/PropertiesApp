@@ -1,5 +1,4 @@
-﻿using Application.Features.Property.Owners.Queries;
-using Application.Features.Property.Owners.Dtos.OwnersDto;
+﻿using Application.Features.Property.Owners.Dtos.OwnersDto;
 using Application.Features.Property.Owners.Mappers;
 using Core.Dtos.ResponsesDto;
 using Infrastructure.Persistence;

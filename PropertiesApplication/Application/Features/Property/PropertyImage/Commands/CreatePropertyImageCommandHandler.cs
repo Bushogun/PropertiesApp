@@ -17,11 +17,10 @@ namespace Application.Features.Property.PropertyImage.Commands
 
         public async Task<Result<CreatePropertyImageResponseDto>> Handle(CreatePropertyImageCommand request, CancellationToken cancellationToken)
         {
-
             var entities = request.FileData.Select(file => new PropertyImageEntity
             {
                 IdProperty = request.IdProperty,
-                FileData = file,
+                FileData = new byte[] { file },
                 Enabled = request.Enabled
             }).ToList();
 

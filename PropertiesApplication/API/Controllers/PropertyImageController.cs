@@ -21,9 +21,9 @@ namespace API.Controllers
         // GET api/property-image/{id}
         [HttpGet("{id}")]
         [Consumes("application/json")]
-        public async Task<Result<List<PropertyImageResponseDto>>> GetAllPropertyImagesByIdProperty(string id)
+        public async Task<Result<List<PropertyImageResponseDto>>> GetAllPropertyImagesByIdProperty(string idProperty)
         {
-            return await _mediator.Send(new GetAllPropertyImageQuery { IdProperty = id });
+            return await _mediator.Send(new GetAllPropertyImageQuery { IdProperty = idProperty });
         }
 
         // POST api/property-image/

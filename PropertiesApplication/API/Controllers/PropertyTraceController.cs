@@ -1,9 +1,9 @@
-﻿using Application.Features.Property.Owners.Dtos.OwnersDto;
-using Application.Features.Property.Owners.Queries;
+﻿using Application.Features.Property.PropertyTrace.Dtos;
+using Application.Features.Property.PropertyTrace.Queries;
+using Microsoft.AspNetCore.Mvc;
 using Core.Dtos.ResponsesDto;
 using MediatR;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+using Application.Features.Property.PropertyTrace.Commands;
 
 namespace API.Controllers
 {
@@ -18,12 +18,23 @@ namespace API.Controllers
             _mediator = mediator;
         }
 
-        // GET api/property-trace
-        [HttpGet]
+        // GET api/property-trace/{id}
+        [HttpGet("{id}")]
         [Consumes("application/json")]
-        public async Task<Result<List<PropertyTraceResponseDto>>> GetPropertyTrace()
+        public async Task<Result<List<PropertyTraceResponseDto>>> GetPropertyTraceByIdProperty(string idProperty)
         {
-            return await _mediator.Send(new GetPropertyTraceQuery());
+            return await _mediator.Send(new GetPropertyTraceByIdPropertyQuery { IdProperty = idProperty });
         }
+
+        // POST api/property-trace
+        [HttpPost]
+        [Consumes("application/json")]
+        public async Task<Result<CreatePropertyTraceResponseDto>> PostPropertyTrace([FromBody] CreatePropertyTraceCommand request)
+        {
+            return await _mediator.Send(request);
+        }
+
+
+
     }
 }
