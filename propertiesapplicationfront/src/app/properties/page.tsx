@@ -1,43 +1,34 @@
 'use client';
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PropertyCard from "@/components/property-card/propertyCard";
+import { GetAllPropertiesAPI } from "../api/propertyService";
 import './properties.css';
 
 const Properties = () => {
-  const [properties, setProperties] = useState([
-    {
-      id: "1",
-      fullName: "Casa Familiar",
-      address: "Calle 123, Cali, Colombia",
-      price: "$200,000",
-      year: "2018",
-    },
-    {
-      id: "2",
-      fullName: "Apartamento Moderno",
-      address: "Cra 45 #12-34, Medellín",
-      price: "$150,000",
-      year: "2020",
-    },
-    {
-      id: "3",
-      fullName: "Finca Campestre",
-      address: "Km 12 vía Jamundí",
-      price: "$350,000",
-      year: "2015",
-    },
-  ]);
+  const [properties, setProperties] = useState({} as any);
+
+useEffect(() => {
+  const fetchProperties = async () => {
+    const response = await GetAllPropertiesAPI();
+    console.log('API Response:', response); 
+  };
+  fetchProperties();
+}, []);
 
   return (
     <div className="about-container">
       <h2>Lista de Propiedades</h2>
       <div className="grid">
-        {properties.map((property) => (
+        {/* {properties.map((property) => (
           <PropertyCard key={property.id} property={property} />
-        ))}
+        ))} */}
       </div>
+      <h3>Respuesta completa del API:</h3>
+      <pre>
+        {JSON.stringify(properties, null, 2)}
+      </pre>
     </div>
   );
-};
+}
 
 export default Properties;
