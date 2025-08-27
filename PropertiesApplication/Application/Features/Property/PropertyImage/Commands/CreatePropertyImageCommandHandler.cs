@@ -17,14 +17,14 @@ namespace Application.Features.Property.PropertyImage.Commands
 
         public async Task<Result<CreatePropertyImageResponseDto>> Handle(CreatePropertyImageCommand request, CancellationToken cancellationToken)
         {
-            var entities = request.FileData.Select(file => new PropertyImageEntity
+            var entity = new PropertyImageEntity
             {
                 IdProperty = request.IdProperty,
-                FileData = new byte[] { file },
+                FileData = request.FileData,
                 Enabled = request.Enabled
-            }).ToList();
+            };
 
-            await _context.PropertyImages.InsertManyAsync(entities, cancellationToken: cancellationToken);
+            await _context.PropertyImages.InsertOneAsync(entity, cancellationToken: cancellationToken);
 
             var response = new CreatePropertyImageResponseDto
             {

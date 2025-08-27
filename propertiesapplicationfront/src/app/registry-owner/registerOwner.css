@@ -20,7 +20,6 @@
     transition: .5s;
 }
 
-
 body > div > div > form > div:nth-child(4) > div > div > span > span.ant-select-selection-placeholder
 {
     color: #757575 !important;

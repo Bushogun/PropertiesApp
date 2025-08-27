@@ -1,6 +1,9 @@
+import { OwnerResponseModel } from "@/models/OwnerModel";
+import { PropertyResponseModel } from "@/models/PropertyModel";
+
 export interface StateProperties {
-  owners: string;
-  properties: string;
+  owners: OwnerResponseModel[] | string;
+  properties: PropertyResponseModel[] | string;
   filterQuery: string;
   specificProperties: string;
   loading: boolean;

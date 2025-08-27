@@ -4,6 +4,7 @@ using Application.Features.Property.Properties.Queries;
 using Core.Dtos.ResponsesDto;
 using Microsoft.AspNetCore.Mvc;
 using MediatR;
+using Application.Features.Property.Owners.Dtos.OwnersDto;
 
 namespace API.Controllers
 {
@@ -45,9 +46,9 @@ namespace API.Controllers
         // DELETE api/property/{id}
         [HttpDelete("{id}")]
         [Consumes("application/json")]
-        public async Task<Result<PropertiesRequestParamsDto>> DeletePropertyAndImages(string idProperty)
+        public async Task<Result<PropertiesRequestParamsDto>> DeletePropertyAndImages(string id)
         {
-            return await _mediator.Send(new DeletePropertiesCommand { IdProperty = idProperty });
+            return await _mediator.Send(new DeletePropertiesCommand { IdProperty = id });
         }
     }
 }

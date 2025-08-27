@@ -67,3 +67,130 @@
         }
     }
 }
+
+
+.property-card {
+  min-height: 400px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.property-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.property-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.property-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #b7b7b7;
+}
+
+.property-year {
+  font-size: 0.9rem;
+  color: #777;
+}
+
+.property-address {
+  font-size: 0.95rem;
+  color: #d6d6d6;
+}
+
+.property-price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #2a9d8f;
+}
+
+.property-footer {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.property-code {
+  font-style: italic;
+}
+
+.property-owner {
+  margin-top: 4px;
+}
+
+
+
+.property-card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.property-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+}
+
+.property-image img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.property-content {
+  padding: 16px;
+}
+
+.property-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.property-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.property-year {
+  font-size: 0.9rem;
+  color: #777;
+}
+
+.property-address {
+  font-size: 0.95rem;
+  color: #555;
+  margin: 6px 0;
+}
+
+.property-price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #2a9d8f;
+  margin: 8px 0;
+}
+
+.property-footer {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.85rem;
+  color: #666;
+}

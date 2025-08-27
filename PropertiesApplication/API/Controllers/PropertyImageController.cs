@@ -19,7 +19,7 @@ namespace API.Controllers
         }
 
         // GET api/property-image/{id}
-        [HttpGet("{id}")]
+        [HttpGet("{idProperty}")]
         [Consumes("application/json")]
         public async Task<Result<List<PropertyImageResponseDto>>> GetAllPropertyImagesByIdProperty(string idProperty)
         {
@@ -35,11 +35,11 @@ namespace API.Controllers
         }
 
         // DELETE api/property-image/{id}
-        [HttpDelete("{id}")]
+        [HttpDelete("{idProperty}")]
         [Consumes("application/json")]
-        public async Task<Result<PropertyImageRequestParamsDto>> DeletePropertyImages(string id)
+        public async Task<Result<PropertyImageRequestParamsDto>> DeletePropertyImages(string idProperty)
         {
-            return await _mediator.Send(new DeletePropertyImagesCommand { IdProperty = id });
+            return await _mediator.Send(new DeletePropertyImagesCommand { IdProperty = idProperty });
         }
     }
 }

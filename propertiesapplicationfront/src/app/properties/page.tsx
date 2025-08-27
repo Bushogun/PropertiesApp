@@ -1,32 +1,36 @@
 'use client';
-import React, { useEffect, useState } from "react";
 import PropertyCard from "@/components/property-card/propertyCard";
 import { GetAllPropertiesAPI } from "../api/propertyService";
+import { PropertyResponseModel } from "@/models/PropertyModel";
+import { setProperties } from '@/redux/features/properties-slice';
+import { useAppDispatch } from "@/redux/hooks";
+import React, { useEffect, useState } from "react";
 import './properties.css';
 
 const Properties = () => {
-  const [properties, setProperties] = useState({} as any);
+  const dispatch = useAppDispatch();
+  const [properties, setPropertiesState] = useState<PropertyResponseModel[]>([]);
 
-useEffect(() => {
-  const fetchProperties = async () => {
-    const response = await GetAllPropertiesAPI();
-    console.log('API Response:', response); 
-  };
-  fetchProperties();
-}, []);
+  useEffect(() => {
+    const fetchProperties = async () => {
+      const response = await GetAllPropertiesAPI();
+      if (response?.data) {
+        setPropertiesState(response.data);
+        dispatch(setProperties(response.data));
+      }
+    };
+
+    fetchProperties();
+  }, []);
 
   return (
     <div className="about-container">
-      <h2>Lista de Propiedades</h2>
+      <h2>Property List</h2>
       <div className="grid">
-        {/* {properties.map((property) => (
-          <PropertyCard key={property.id} property={property} />
-        ))} */}
+        {properties.map((property) => (
+          <PropertyCard key={property.idProperty} property={property} />
+        ))}
       </div>
-      <h3>Respuesta completa del API:</h3>
-      <pre>
-        {JSON.stringify(properties, null, 2)}
-      </pre>
     </div>
   );
 }

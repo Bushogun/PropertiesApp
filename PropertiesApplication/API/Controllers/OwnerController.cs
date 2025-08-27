@@ -4,6 +4,7 @@ using Application.Features.Property.Owners.Queries;
 using Application.Features.Property.Owners.Commands;
 using Core.Dtos.ResponsesDto;
 using MediatR;
+using Application.Features.Property.Properties.Queries;
 
 namespace API.Controllers
 {

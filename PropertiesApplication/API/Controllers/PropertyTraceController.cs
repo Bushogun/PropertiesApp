@@ -19,7 +19,7 @@ namespace API.Controllers
         }
 
         // GET api/property-trace/{id}
-        [HttpGet("{id}")]
+        [HttpGet("{idProperty}")]
         [Consumes("application/json")]
         public async Task<Result<List<PropertyTraceResponseDto>>> GetPropertyTraceByIdProperty(string idProperty)
         {
