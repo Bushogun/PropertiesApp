@@ -1,10 +1,10 @@
 import { PropertyResponseModel } from "@/models/PropertyModel";
 import React, { useEffect, useState } from "react";
-import "./propertyCard.css";
 import { formatPrice } from "@/utils/string-utils";
 import { GetPropertyImageByIdAPI } from "@/app/api/propertyImageService";
 import { GetOwnerByIdAPI } from "@/app/api/ownerService";
 import { useRouter } from "next/navigation";
+import "./propertyCard.css";
 
 const PropertyCard: React.FC<{ property: PropertyResponseModel }> = ({ property }) => {
   const [imageBase64, setImageBase64] = useState<string>("");
@@ -59,8 +59,8 @@ const PropertyCard: React.FC<{ property: PropertyResponseModel }> = ({ property 
         <p className="property-price">{formatPrice(String(property.price))}</p>
 
         <div className="property-footer">
-          <span className="property-code">Código: {property.codeInternal}</span>
-          <span className="property-owner">👤 Dueño ID: {ownerName}</span>
+          <span className="property-code">Code: {property.codeInternal}</span>
+          <span className="property-owner">👤 Owner: {ownerName}</span>
         </div>
       </div>
     </div>

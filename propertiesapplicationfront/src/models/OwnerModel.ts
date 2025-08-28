@@ -2,7 +2,7 @@ export interface OwnerPostModel {
     name:     string;
     address:  string;
     photo:    string;
-    birthday: Date;
+    birthday: string;
 }
 
 export interface OwnerResponseModel {
@@ -10,5 +10,5 @@ export interface OwnerResponseModel {
     name:     string;
     address:  string;
     photo:    string;
-    birthday: Date;
+    birthday: string;
 }
