@@ -1,9 +1,5 @@
-﻿using Domain.Entities;
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
-using System;
-using System.Diagnostics;
-using System.Net;
 
 namespace Domain.Entities
 {

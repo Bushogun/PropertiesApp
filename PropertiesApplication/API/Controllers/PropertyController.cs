@@ -19,12 +19,12 @@ namespace API.Controllers
             _mediator = mediator;
         }
 
-        // GET api/property
+        // GET api/property?name=Casa&year=2022
         [HttpGet]
         [Consumes("application/json")]
-        public async Task<Result<List<PropertiesResponseDto>>> GetAllProperties()
+        public async Task<Result<List<PropertiesResponseDto>>> GetAllProperties([FromQuery] GetAllPropertiesQuery query)
         {
-            return await _mediator.Send(new GetAllPropertiesQuery());
+            return await _mediator.Send(query);
         }
 
         // GET api/property/{id}
