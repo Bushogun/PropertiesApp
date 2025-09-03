@@ -1,0 +1,28 @@
+.container {
+  text-align: center;
+  display: flex;
+  padding-top: 10px;
+  padding-bottom: 40px;
+  justify-content: center;
+  width: 100%;
+}
+
+.container input {
+  padding: 10px 60px 10px 15px;
+  border: 1px solid #bbb;
+  border-radius: 6px 0px 0px 6px;
+}
+
+.container input:focus {
+  outline: none;
+}
+
+.container .input-group {
+  display: flex;
+}
+
+.container .btn-search {
+  border: 1px solid #bbb;
+  border-radius: 0px 6px 6px 0px;
+  height: 100%;
+}

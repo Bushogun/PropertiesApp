@@ -15,10 +15,9 @@ import './registerProperty.css';
 
 export default function RegisterProperty() {
     const dispatch = useAppDispatch();
-    const [form] = Form.useForm();
+    const [form2] = Form.useForm();
     const [allOwners, setAllOwners] = useState<any[]>([]);
     const [selectedOwner, setSelectedOwner] = useState<string | null>(null);
-    const [idPropertyCreated, setIdPropertyCreated] = useState<string>('');
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [fullName, setFullName] = useState('');
     const [address, setAddress] = useState('');
@@ -90,8 +89,7 @@ export default function RegisterProperty() {
 
         setIsSubmitting(true);
         try {
-            const thumbnailBase64 = form.getFieldValue('thumbnailUrl');
-
+            const thumbnailBase64 = form2.getFieldValue('thumbnailUrl');
             const payload: PropertyPostModel = {
                 idOwner: selectedOwner as string,
                 name: fullName,
@@ -121,7 +119,7 @@ export default function RegisterProperty() {
                 toast.success('Property created successfully (without image).');
             }
 
-            form.resetFields();
+            form2.resetFields();
             setSelectedOwner(null);
             setFullName('');
             setAddress('');
@@ -209,7 +207,7 @@ export default function RegisterProperty() {
                     <label className="errorLabel">{errors.year}</label>
                 </div>
 
-                <DragNDropLocal form={form} fieldName="thumbnailUrl" clear={false} />
+                <DragNDropLocal form={form2} fieldName="thumbnailUrl" clear={false} />
 
                 <input
                     onClick={onSubmit}

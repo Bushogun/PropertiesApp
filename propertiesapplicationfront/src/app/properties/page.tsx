@@ -6,6 +6,7 @@ import { setProperties } from '@/redux/features/properties-slice';
 import { useAppDispatch } from "@/redux/hooks";
 import React, { useEffect, useState } from "react";
 import './properties.css';
+import { SearchBarForm } from "@/components/search-bar/search-bar-form";
 
 const Properties = () => {
   const dispatch = useAppDispatch();
@@ -26,6 +27,7 @@ const Properties = () => {
   return (
     <div className="about-container">
       <h2>Property List</h2>
+      <SearchBarForm />
       <div className="grid">
         {properties.map((property) => (
           <PropertyCard key={property.idProperty} property={property} />

@@ -27,7 +27,6 @@ export default function RegisterOwner() {
     birthday: '',
   });
 
-  // VALIDACIÓN: ahora checa también el thumbnail que está en el `form`
   const validateForm = () => {
     const uploadedPhoto = form.getFieldValue('thumbnailUrl');
     const newErrors = {
@@ -39,7 +38,6 @@ export default function RegisterOwner() {
 
     if (!fullName.trim()) newErrors.fullName = 'Please enter the Full Name.';
     if (!address.trim()) newErrors.address = 'Please enter the Address.';
-    // revisamos tanto el state photo como el thumbnail subido en el form
     if (!(photo?.trim() || (uploadedPhoto && uploadedPhoto !== ''))) newErrors.photo = 'Please upload a Photo.';
     if (!birthday.trim()) newErrors.birthday = 'Please select a Birthday.';
 
@@ -57,11 +55,9 @@ export default function RegisterOwner() {
     setIsSubmitting(true);
 
     try {
-      // obtenemos la foto directamente del form (si existe) o del state
       const uploadedPhoto = form.getFieldValue('thumbnailUrl');
       const finalPhotoRaw = uploadedPhoto || photo || '';
 
-      // Si viene como dataURL (data:image/png;base64,AAA...), extraemos solo base64 (igual que haces en property)
       const finalPhoto = typeof finalPhotoRaw === 'string' && finalPhotoRaw.includes(',')
         ? finalPhotoRaw.split(',')[1]
         : finalPhotoRaw;
@@ -69,8 +65,8 @@ export default function RegisterOwner() {
       const ownerData: OwnerPostModel = {
         name: fullName,
         address,
-        photo: finalPhoto, // mandamos base64 o string según lo que tu backend espere
-        birthday: dayjs(birthday).toISOString(), // ISO string
+        photo: finalPhoto, 
+        birthday: dayjs(birthday).toISOString(),
       };
 
       console.log('[RegisterOwner] sending payload:', ownerData);
@@ -78,7 +74,6 @@ export default function RegisterOwner() {
       const response = await CreateOwnerAPI(ownerData);
       console.log('[RegisterOwner] API response:', response);
       toast.success('Owner created successfully!');
-      // limpiar
       form.resetFields();
       setFullName('');
       setAddress('');
@@ -131,7 +126,6 @@ export default function RegisterOwner() {
           </div>
         </div>
 
-        {/* Drag & Drop: debe setear el field `thumbnailUrl` en el `form` */}
         <DragNDropLocal form={form} fieldName="thumbnailUrl" clear={false} />
         <label className="errorLabel">{errors.photo}</label>
 
